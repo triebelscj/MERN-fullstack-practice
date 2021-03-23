@@ -3,7 +3,7 @@ import axios from 'axios';
 import { navigate } from '@reach/router'
 
 
-const Update = props => {
+const Update = (props) => {
     const { id } = props;
     // const { product } = props;
     const [title, setTitle] = useState('');
@@ -16,9 +16,8 @@ const Update = props => {
                 setTitle(res.data.title);
                 setPrice(res.data.price);
                 setDesc(res.data.desc);
-                console.log(title)
             })
-    })
+    }, [id])
 
     const updateProduct = e => {
         e.preventDefault();
@@ -30,19 +29,20 @@ const Update = props => {
             .then(res => {
                 console.log(res)
                 navigate("/")
-            });
+            })
+            .catch(err => console.log(err))
     }
     return (
         <div>
             <h1>Update a Product</h1>
             <form onSubmit={updateProduct}>
+                {JSON.stringify(title)}
                 <p>
                     <label>Title</label><br />
                     <input type="text"
                         name="title"
                         value={title}
-                        onChange={(e) => { setTitle(e.target.value) }}
-                        placeholder={"testing"} />
+                        onChange={(e) => { setTitle(e.target.value) }} />
                 </p>
                 <p>
                     <label>Price</label><br />

@@ -9,11 +9,11 @@ const Detail = props => {
 
 
     useEffect(() => {
-        axios.get("http://localhost:8030/api/products/" + props.id)
+        axios.get("http://localhost:8000/api/products/" + props.id)
             .then(res => setProduct(res.data))
     }, [props.id])
     const deleteProduct = (productId) => {
-        axios.delete('http://localhost:8030/api/products/' + productId)
+        axios.delete('http://localhost:8000/api/products/' + productId)
             .then(res => {
                 navigate("/")
             })
